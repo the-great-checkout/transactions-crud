@@ -22,7 +22,7 @@ definitions:
     required:
     - value
     type: object
-host: localhost:8080
+host: localhost:8081
 info:
   contact: {}
   description: This is a sample server for transactions CRUD.

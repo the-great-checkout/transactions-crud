@@ -32,15 +32,14 @@ type Environment struct {
 	Port string `env:"PORT,default=:8081"`
 }
 
-var environment Environment
-
 // @title Transactions CRUD API
 // @version 1.0
 // @description This is a sample server for transactions CRUD.
-// @host localhost:8080
+// @host localhost:8081
 // @BasePath /
 
 func main() {
+	var environment Environment
 	_, err := env.UnmarshalFromEnviron(&environment)
 	if err != nil {
 		panic(err)
