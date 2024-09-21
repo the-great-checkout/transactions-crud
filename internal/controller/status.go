@@ -25,6 +25,18 @@ func NewStatusController(
 	}
 }
 
+// CreateHandler creates a new status
+//
+//	@Summary		Create a status
+//	@Description	Create a new status with a name
+//	@Tags			statuses
+//	@Accept			json
+//	@Produce		json
+//	@Param			status	body		dto.Status	true	"Status Data"
+//	@Success		201		{object}	dto.Status
+//	@Failure		400		{object}	map[string]string
+//	@Failure		500		{object}	map[string]string
+//	@Router			/statuses [post]
 func (ctrl *StatusController) CreateHandler(c echo.Context) error {
 	var input dto.Status
 	if err := c.Bind(&input); err != nil {
@@ -39,6 +51,17 @@ func (ctrl *StatusController) CreateHandler(c echo.Context) error {
 	return c.JSON(http.StatusCreated, status)
 }
 
+// GetByIDHandler retrieves a status by ID
+//
+//	@Summary		Get a status by ID
+//	@Description	Retrieve a single status using its ID
+//	@Tags			statuses
+//	@Produce		json
+//	@Param			id	path		string	true	"Status ID"
+//	@Success		200	{object}	dto.Status
+//	@Failure		400	{object}	map[string]string
+//	@Failure		404	{object}	map[string]string
+//	@Router			/statuses/{id} [get]
 func (ctrl *StatusController) GetByIDHandler(c echo.Context) error {
 	idStr := c.Param("id")
 	id, err := uuid.Parse(idStr)
@@ -54,6 +77,15 @@ func (ctrl *StatusController) GetByIDHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, status)
 }
 
+// GetAllHandler retrieves all statuses
+//
+//	@Summary		Get all statuses
+//	@Description	Retrieve all statuses
+//	@Tags			statuses
+//	@Produce		json
+//	@Success		200	{array}		dto.Status
+//	@Failure		500	{object}	map[string]string
+//	@Router			/statuses [get]
 func (ctrl *StatusController) GetAllHandler(c echo.Context) error {
 	statuses, err := ctrl.statusService.GetAll()
 	if err != nil {

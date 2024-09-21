@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/Netflix/go-env"
 	"github.com/labstack/echo/v4"
+	echoSwagger "github.com/swaggo/echo-swagger"
+	_ "github.com/the-great-checkout/transactions-crud/docs"
 
 	"github.com/the-great-checkout/transactions-crud/internal/controller"
 	"github.com/the-great-checkout/transactions-crud/internal/database"
@@ -32,6 +34,12 @@ type Environment struct {
 
 var environment Environment
 
+// @title Transactions CRUD API
+// @version 1.0
+// @description This is a sample server for transactions CRUD.
+// @host localhost:8080
+// @BasePath /
+
 func main() {
 	_, err := env.UnmarshalFromEnviron(&environment)
 	if err != nil {
@@ -54,6 +62,7 @@ func main() {
 	statusController := controller.NewStatusController(statusService)
 
 	e := echo.New()
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	v1 := e.Group("/v1")
 
