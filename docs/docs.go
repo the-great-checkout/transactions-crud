@@ -15,7 +15,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/statuses": {
+        "/v1/statuses": {
             "get": {
                 "description": "Retrieve all statuses",
                 "produces": [
@@ -97,7 +97,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/statuses/{id}": {
+        "/v1/statuses/{statusID}": {
             "get": {
                 "description": "Retrieve a single status using its ID",
                 "produces": [
@@ -144,7 +144,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/transactions": {
+        "/v1/transactions": {
             "get": {
                 "description": "Retrieve all transactions",
                 "produces": [
@@ -226,7 +226,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/transactions/{id}": {
+        "/v1/transactions/{transactionID}": {
             "get": {
                 "description": "Retrieve a single transaction using its ID",
                 "produces": [

@@ -9,7 +9,7 @@
     "host": "localhost:8081",
     "basePath": "/",
     "paths": {
-        "/statuses": {
+        "/v1/statuses": {
             "get": {
                 "description": "Retrieve all statuses",
                 "produces": [
@@ -91,7 +91,7 @@
                 }
             }
         },
-        "/statuses/{id}": {
+        "/v1/statuses/{statusID}": {
             "get": {
                 "description": "Retrieve a single status using its ID",
                 "produces": [
@@ -138,7 +138,7 @@
                 }
             }
         },
-        "/transactions": {
+        "/v1/transactions": {
             "get": {
                 "description": "Retrieve all transactions",
                 "produces": [
@@ -220,7 +220,7 @@
                 }
             }
         },
-        "/transactions/{id}": {
+        "/v1/transactions/{transactionID}": {
             "get": {
                 "description": "Retrieve a single transaction using its ID",
                 "produces": [

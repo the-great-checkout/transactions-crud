@@ -32,11 +32,11 @@ type Environment struct {
 	Port string `env:"PORT,default=:8081"`
 }
 
-// @title Transactions CRUD API
-// @version 1.0
-// @description This is a sample server for transactions CRUD.
-// @host localhost:8081
-// @BasePath /
+//	@title			Transactions CRUD API
+//	@version		1.0
+//	@description	This is a sample server for transactions CRUD.
+//	@host			localhost:8081
+//	@BasePath		/
 
 func main() {
 	var environment Environment
@@ -66,12 +66,12 @@ func main() {
 	v1 := e.Group("/v1")
 
 	v1.POST("/transactions", transactionController.CreateHandler)
-	v1.GET("/transactions/:id", transactionController.GetByIDHandler)
+	v1.GET("/transactions/:transactionID", transactionController.GetByIDHandler)
 	v1.GET("/transactions", transactionController.GetAllHandler)
-	v1.PUT("/transactions/:id", transactionController.UpdateHandler)
-	v1.DELETE("/transactions/:id", transactionController.DeleteHandler)
+	v1.PUT("/transactions/:transactionID", transactionController.UpdateHandler)
+	v1.DELETE("/transactions/:transactionID", transactionController.DeleteHandler)
 	v1.POST("/statuses", statusController.CreateHandler)
-	v1.GET("/statuses/:id", statusController.GetByIDHandler)
+	v1.GET("/statuses/:statusID", statusController.GetByIDHandler)
 	v1.GET("/statuses", statusController.GetAllHandler)
 
 	e.Logger.Fatal(e.Start(environment.Port))

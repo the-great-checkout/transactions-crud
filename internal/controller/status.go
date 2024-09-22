@@ -36,7 +36,7 @@ func NewStatusController(
 //	@Success		201		{object}	dto.Status
 //	@Failure		400		{object}	map[string]string
 //	@Failure		500		{object}	map[string]string
-//	@Router			/statuses [post]
+//	@Router			/v1/statuses [post]
 func (ctrl *StatusController) CreateHandler(c echo.Context) error {
 	var input dto.Status
 	if err := c.Bind(&input); err != nil {
@@ -61,9 +61,9 @@ func (ctrl *StatusController) CreateHandler(c echo.Context) error {
 //	@Success		200	{object}	dto.Status
 //	@Failure		400	{object}	map[string]string
 //	@Failure		404	{object}	map[string]string
-//	@Router			/statuses/{id} [get]
+//	@Router			/v1/statuses/{statusID} [get]
 func (ctrl *StatusController) GetByIDHandler(c echo.Context) error {
-	idStr := c.Param("id")
+	idStr := c.Param("statusID")
 	id, err := uuid.Parse(idStr)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid ID format"})
@@ -85,7 +85,7 @@ func (ctrl *StatusController) GetByIDHandler(c echo.Context) error {
 //	@Produce		json
 //	@Success		200	{array}		dto.Status
 //	@Failure		500	{object}	map[string]string
-//	@Router			/statuses [get]
+//	@Router			/v1/statuses [get]
 func (ctrl *StatusController) GetAllHandler(c echo.Context) error {
 	statuses, err := ctrl.statusService.GetAll()
 	if err != nil {

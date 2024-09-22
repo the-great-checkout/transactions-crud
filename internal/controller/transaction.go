@@ -46,7 +46,7 @@ func NewTransactionController(
 //	@Success		201			{object}	dto.Transaction
 //	@Failure		400			{object}	map[string]string
 //	@Failure		500			{object}	map[string]string
-//	@Router			/transactions [post]
+//	@Router			/v1/transactions [post]
 func (ctrl *TransactionController) CreateHandler(c echo.Context) error {
 	var input dto.Transaction
 	if err := c.Bind(&input); err != nil {
@@ -76,9 +76,9 @@ func (ctrl *TransactionController) CreateHandler(c echo.Context) error {
 //	@Success		200	{object}	dto.Transaction
 //	@Failure		400	{object}	map[string]string
 //	@Failure		404	{object}	map[string]string
-//	@Router			/transactions/{id} [get]
+//	@Router			/v1/transactions/{transactionID} [get]
 func (ctrl *TransactionController) GetByIDHandler(c echo.Context) error {
-	idStr := c.Param("id")
+	idStr := c.Param("transactionID")
 	id, err := uuid.Parse(idStr)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid ID format"})
@@ -100,7 +100,7 @@ func (ctrl *TransactionController) GetByIDHandler(c echo.Context) error {
 //	@Produce		json
 //	@Success		200	{array}		dto.Transaction
 //	@Failure		500	{object}	map[string]string
-//	@Router			/transactions [get]
+//	@Router			/v1/transactions [get]
 func (ctrl *TransactionController) GetAllHandler(c echo.Context) error {
 	transactionsDTOs, err := ctrl.transactionService.GetAll()
 	if err != nil {
@@ -122,9 +122,9 @@ func (ctrl *TransactionController) GetAllHandler(c echo.Context) error {
 //	@Success		200			{object}	dto.Transaction
 //	@Failure		400			{object}	map[string]string
 //	@Failure		500			{object}	map[string]string
-//	@Router			/transactions/{id} [put]
+//	@Router			/v1/transactions/{transactionID} [put]
 func (ctrl *TransactionController) UpdateHandler(c echo.Context) error {
-	idStr := c.Param("id")
+	idStr := c.Param("transactionID")
 	id, err := uuid.Parse(idStr)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid ID format"})
@@ -159,9 +159,9 @@ func (ctrl *TransactionController) UpdateHandler(c echo.Context) error {
 //	@Success		204
 //	@Failure		400	{object}	map[string]string
 //	@Failure		500	{object}	map[string]string
-//	@Router			/transactions/{id} [delete]
+//	@Router			/v1/transactions/{transactionID} [delete]
 func (ctrl *TransactionController) DeleteHandler(c echo.Context) error {
-	idStr := c.Param("id")
+	idStr := c.Param("transactionID")
 	id, err := uuid.Parse(idStr)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid ID format"})

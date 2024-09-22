@@ -29,7 +29,7 @@ info:
   title: Transactions CRUD API
   version: "1.0"
 paths:
-  /statuses:
+  /v1/statuses:
     get:
       description: Retrieve all statuses
       produces:
@@ -83,7 +83,7 @@ paths:
       summary: Create a status
       tags:
       - statuses
-  /statuses/{id}:
+  /v1/statuses/{statusID}:
     get:
       description: Retrieve a single status using its ID
       parameters:
@@ -114,7 +114,7 @@ paths:
       summary: Get a status by ID
       tags:
       - statuses
-  /transactions:
+  /v1/transactions:
     get:
       description: Retrieve all transactions
       produces:
@@ -168,7 +168,7 @@ paths:
       summary: Create a transaction
       tags:
       - transactions
-  /transactions/{id}:
+  /v1/transactions/{transactionID}:
     delete:
       description: Soft delete a transaction by its ID
       parameters:
